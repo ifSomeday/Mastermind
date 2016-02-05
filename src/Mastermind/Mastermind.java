@@ -2,6 +2,7 @@ package Mastermind;
 
 
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -98,5 +99,37 @@ public class Mastermind {
 				return false;
 			}
 		}
+	}
+	
+	public static String getCompCode(){
+		Random rand = new Random();
+		String letters = new String();
+		String numbers = String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1);
+		for (char c : numbers.toUpperCase().toCharArray()) {
+			switch (c) {
+			case ('1'):
+				letters += "R";
+				break;
+			case ('2'):
+				letters += "O";
+				break;
+			case ('3'):
+				letters += "Y";
+				break;
+			case ('4'):
+				letters += "G";
+				break;
+			case ('5'):
+				letters += "B";
+				break;
+			case ('6'):
+				letters += "P";
+				break;
+			default:
+				System.out.println(c);
+				break;
+			}
+		}
+		return(letters);
 	}
 }
