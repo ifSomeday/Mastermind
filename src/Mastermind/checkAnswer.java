@@ -21,7 +21,7 @@ public class checkAnswer {
 	/**
 	 * Checks two char arrays, one for the guess and one for the solution.
 	 * @param guess The first String (guess) to be compared
-	 * @param answer The seonc String (solution to be compared
+	 * @param answer The second String (solution to be compared
 	 * @return An array corresponding to the colours in the correct position and the colours in the wrong position. respectively
 	 */
 	public static int[] check(char[] guess, char[] answer){
