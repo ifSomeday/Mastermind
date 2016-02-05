@@ -114,7 +114,7 @@ public class KnuthAlgorithm {
 		int[] result = checkAnswer.check(currentGuess, solution);
 		allSolutions.remove(allSolutions.indexOf(currentGuess));
 		if (result[0] == 4) {
-			System.out.println("Solved! Solution is: " + numbersToLetters(currentGuess));
+			System.out.println("Solved! Solution is: " + numbersToLetters(currentGuess)+ "\nIt took " + numGuesses + " for me to solve the code.\n");
 			return (numGuesses);
 		} else if (interact) {
 			System.out.println(

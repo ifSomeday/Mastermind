@@ -18,7 +18,7 @@ public class Mastermind {
 		
 		//Main program loop
 		while(programOn) {
-			//main menu
+			//main menu2
 			System.out.println("Let's Play Mastermind!");
 			System.out.println("1. Start a game: User picks set");
 			System.out.println("2. Start a game: Computer picks set");
