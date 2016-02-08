@@ -1,6 +1,6 @@
 package Mastermind;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by benst on 2/5/2016.
@@ -10,12 +10,12 @@ public class State {
     static final String COLORS = "ROYGBP";
     static final int NUM_COLORS = COLORS.length();
     static final int TURNS = 12;
-    Code solution;
+    String solution;
     int turn;
-    List<Turn> turnList;
+    List<Turn> turnList = new ArrayList<Turn>();
 
     public State() {
-        this.solution = new Code("TODO");
+        this.solution = Mastermind.getCompCode();
         this.turn = 1;
     }
 
