@@ -12,7 +12,7 @@ public class State {
     static final int TURNS = 12;
     String solution;
     int turn;
-    List<Turn> turnList = new ArrayList<Turn>();
+    ArrayList<Turn> turnList = new ArrayList<Turn>();
 
     public State() {
         this.solution = Mastermind.getCompCode();
