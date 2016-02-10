@@ -1,6 +1,9 @@
+import Mastermind.Mastermind;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Mastermind game = new Mastermind();
+        game.play();
     }
 }

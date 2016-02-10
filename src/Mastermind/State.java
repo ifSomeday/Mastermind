@@ -10,16 +10,21 @@ public class State {
     static final String COLORS = "ROYGBP";
     static final int NUM_COLORS = COLORS.length();
     static final int TURNS = 12;
-    Code solution;
+    Set solution;
     int turn;
     List<Turn> turnList;
 
-    public State() {
-        this.solution = new Code("TODO");
+    public State(Set solution) {
+        this.solution = solution;
         this.turn = 1;
     }
 
     public int turnsLeft() {
         return TURNS - turn;
+    }
+
+    public boolean nextTurn() {
+        turn++;
+        return (turnsLeft() > 0);
     }
 }

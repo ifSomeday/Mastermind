@@ -3,19 +3,19 @@ package Mastermind;
 /**
  * Created by benst on 2/5/2016.
  */
-public class Code {
-    String pegs;
+public class Set {
+    public String pegs;
 
-    public Code(String codePegs) {
-        this.pegs = pegs;
+    public Set(String codePegs) {
+        this.pegs = codePegs;
     }
 
-    public Key Compare (Code aCode) {
+    public Key Matches(Set aSet) {
         Key k = new Key();
         boolean pegUsed[] = new boolean[4];
 
         String guess = this.pegs;
-        String solution = aCode.pegs;
+        String solution = aSet.pegs;
 
         // unique match counting (all key pegs)
         for(int i=0; i<guess.length(); i++) {
