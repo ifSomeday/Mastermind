@@ -4,15 +4,16 @@ package Mastermind;
  * Created by benst_ghk on 2/5/2016.
  */
 public class Turn {
-    Set guess;
+    Code guess;
     Key result;
 
-    public Turn(Set solution) {
-        this.result = this.guess.Matches(solution);
+    public Turn(Code solution) {
+        this.guess = getNextGuess();
+        this.result = this.guess.Compare(solution);
     }
 
-    public Set getNextGuess() {
-        Set c = new Set("TODO");
+    public Code getNextGuess() {
+        Code c = new Code("TODO");
         return c;
     }
 }

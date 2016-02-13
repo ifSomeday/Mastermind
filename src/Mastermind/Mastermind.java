@@ -8,17 +8,16 @@ import java.util.Scanner;
 
 
 public class Mastermind {
+	static boolean programOn = true;
+	static String set;
 	static KnuthAlgorithm knuth = new KnuthAlgorithm();
-	static int COMPUTER_PLAYS = 1, USER_PLAYS = 2, QUIT = 3;
-
-	Set set;
 	
-	public void play() {
+	public static void main(String[] args) {
 		
 		Scanner reader = new Scanner(System.in); // Reading from System.in
 		
 		//Main program loop
-		while(true) {
+		while(programOn) {
 			//main menu2
 			System.out.println("Let's Play Mastermind!");
 			System.out.println("1. Start a game: User picks set");
@@ -35,31 +34,48 @@ public class Mastermind {
 			reader.nextLine();
 			
 			//start game where user picks colors
-			if (choice == COMPUTER_PLAYS) {
+			if (choice == 1) {
 				System.out.println("Enter a string of 4 characters, each being the first letter of a color from:");
 				System.out.println("Red, Orange, Green, Yellow, Blue, Purple");
-
-				set = getSet();
-				State gs = new State(set);
-				knuth.solve(set.pegs);
+				
+				boolean setCorrect = false;
+				while (!setCorrect) {
+					set = reader.nextLine();
+					if (setChecker(set)) {
+						setCorrect = true;
+					} else {
+						System.out.println("This is not a valid set of characters, please try again");
+					}
+				}
+				
+				knuth.solve(set.toUpperCase());
 			} 
 			
 			//start game where computer picks colors
-			else if (choice == USER_PLAYS) {
-				State gs = new State(getRandomSet());
+			else if (choice == 2) {
 				System.out.println("Enter a guess as a string of 4 characters, each being the first letter of a color from:");
 				System.out.println("Red, Orange, Green, Yellow, Blue, Purple");
-
-				while (gs.turnsLeft() > 0) {
-					System.out.println("You have "+gs.turnsLeft()+" turns left");
-					set = getSet();
-					set.Matches(gs.solution);
-					gs.nextTurn();
+				
+				boolean continueGame = true;
+				int turnsLeft = 12;
+				while (continueGame) {
+					System.out.println("You have "+turnsLeft+" turns left");
+					boolean setCorrect = false;
+					while (!setCorrect) {
+						set = reader.nextLine();
+						if (setChecker(set)) {
+							setCorrect = true;
+						} else {
+							System.out.println("This is not a valid set of characters, please try again");
+						}
+					}
+					//continueGame = userGame.runTurn(set.toUpperCase());
+					turnsLeft--;
 				}
 			} 
 			
 			//exit program
-			else if (choice == QUIT) {
+			else if (choice == 3) {
 				System.out.println("Goodbye!");
 				System.exit(0);
 			} 
@@ -70,33 +86,25 @@ public class Mastermind {
 			}
 		}
 	}
-
-	public Set getSet() {
-		Scanner reader = new Scanner(System.in); // Reading from System.in
-		String input;
-		boolean validSet = false;
-		while (true) {
-			input = reader.nextLine();
-			if (isValidSet(input)) {
-				Set set = new Set(input.toUpperCase());
-				return set;
+	
+	//checks sets to see if they are in the correct format
+	public static boolean setChecker(String set) {
+		set = set.toUpperCase();
+		if (set.length() != 4) {
+			return false;
+		} else {
+			if (set.matches("[ROGYBP]*")) {
+				return true;
 			} else {
-				System.out.println("This is not a valid set of characters, please try again");
+				return false;
 			}
 		}
 	}
 	
-	//checks sets to see if they are in the correct format
-	public static boolean isValidSet(String set) {
-		return (set.length()==4 & set.toUpperCase().matches("[ROGYBP]*"));
-	}
-	
-	public static Set getRandomSet(){
+	public static String getCompCode(){
 		Random rand = new Random();
 		String letters = new String();
-		String numbers = String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1) +
-				String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1);
-
+		String numbers = String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1) + String.valueOf(rand.nextInt(6)+1);
 		for (char c : numbers.toUpperCase().toCharArray()) {
 			switch (c) {
 			case ('1'):
@@ -122,8 +130,6 @@ public class Mastermind {
 				break;
 			}
 		}
-
-		Set set = new Set(letters.toUpperCase());
-		return set;
+		return(letters);
 	}
 }
