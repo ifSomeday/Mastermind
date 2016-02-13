@@ -57,16 +57,32 @@ public class Mastermind {
 				System.out.println("Red, Orange, Green, Yellow, Blue, Purple");
 				
 				boolean continueGame = true;
+				String answer = getCompCode();
 				int turnsLeft = 12;
+				int[] result = new int[2];
 				while (continueGame) {
 					System.out.println("You have "+turnsLeft+" turns left");
 					boolean setCorrect = false;
 					while (!setCorrect) {
+						
 						set = reader.nextLine();
 						if (setChecker(set)) {
 							setCorrect = true;
 						} else {
 							System.out.println("This is not a valid set of characters, please try again");
+						}
+					}
+					result = checkAnswer.check(set, answer);
+					if(result[0] == 4){
+						System.out.println("Correct!");
+						continueGame = false;
+					} else {
+						System.out.println("Incorrect. You got " + result[0] + " black pegs and " + result[1] + " white pegs!RR");
+						if(turnsLeft != 1){
+							System.out.println("Guess again!");
+						} else {
+							System.out.println("The correct answer was: " + answer + ".");
+							continueGame = false;
 						}
 					}
 					//continueGame = userGame.runTurn(set.toUpperCase());
@@ -130,6 +146,7 @@ public class Mastermind {
 				break;
 			}
 		}
-		return(letters);
+		//return(letters);
+		return("RRRR");
 	}
 }

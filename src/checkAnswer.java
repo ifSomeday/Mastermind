@@ -13,6 +13,9 @@ public class checkAnswer {
 	 * @return An array corresponding to the colours in the correct position and the colours in the wrong position, respectively
 	 */
 	public static int[] check(String a, String b){
+		if(a.equals(b)){
+			return(new int[] {4, 0});
+		}
 		return(check(splitString(a), splitString(b)));
 	}
 	
