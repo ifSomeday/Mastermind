@@ -22,7 +22,8 @@ public class Mastermind {
 			System.out.println("Let's Play Mastermind!");
 			System.out.println("1. Start a game: User picks set");
 			System.out.println("2. Start a game: Computer picks set");
-			System.out.println("3. Quit");
+			System.out.println("3. Statistics and Options");
+			System.out.println("4. Quit");
 			
 			//select menu option
 			int choice = 0;
@@ -91,11 +92,37 @@ public class Mastermind {
 			} 
 			
 			//exit program
-			else if (choice == 3) {
+			else if (choice == 4) {
 				System.out.println("Goodbye!");
 				System.exit(0);
 			} 
-			
+			else if (choice == 3){
+				System.out.println("\t1. Perform Stats\n\t2. Display Stats\n\t3. Change Computer guess delay\n\t0. Go back");
+				try {
+					choice = reader.nextInt(); // Scans the next token of the input as an
+				} catch (InputMismatchException e) {
+					System.out.println("Invalid input.");
+					choice = 0;
+				}
+				if(choice == 1){
+					knuth.performStats();
+				} else if(choice == 2){
+					knuth.displayStats();
+				} else if(choice == 3){
+					System.out.println("Enter Computer guess delay (in milliseconds): ");
+					try {
+						choice = reader.nextInt(); // Scans the next token of the input as an
+					} catch (InputMismatchException e) {
+						System.out.println("Invalid input. Defaulting to 1500ms.");
+						choice = 1500;
+					}
+					knuth.setSleepTime(choice);
+				} else if(choice == 0) {
+					System.out.println("Exiting.");
+				}
+				
+				
+			}
 			//handles incorrect menu selection
 			else {
 				System.out.println("This is an invalid input, please try again");
@@ -146,7 +173,6 @@ public class Mastermind {
 				break;
 			}
 		}
-		//return(letters);
-		return("RRRR");
+		return(letters);
 	}
 }
