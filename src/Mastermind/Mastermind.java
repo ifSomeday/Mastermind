@@ -1,3 +1,6 @@
+/**
+ * @author Ben Stearman, Chris Sandvik
+ */
 package Mastermind;
 
 
@@ -12,6 +15,10 @@ public class Mastermind {
 	static String set;
 	static KnuthAlgorithm knuth = new KnuthAlgorithm();
 	
+	/**
+	 * Main program loop in charge of running and maintaining the game
+	 * @param args command line arguments
+	 */
 	public static void main(String[] args) {
 		
 		Scanner reader = new Scanner(System.in); // Reading from System.in
@@ -78,7 +85,7 @@ public class Mastermind {
 						System.out.println("Correct!");
 						continueGame = false;
 					} else {
-						System.out.println("Incorrect. You got " + result[0] + " black pegs and " + result[1] + " white pegs!RR");
+						System.out.println("Incorrect. You got " + result[0] + " black pegs and " + result[1] + " white pegs!");
 						if(turnsLeft != 1){
 							System.out.println("Guess again!");
 						} else {
@@ -94,6 +101,7 @@ public class Mastermind {
 			//exit program
 			else if (choice == 4) {
 				System.out.println("Goodbye!");
+				reader.close();
 				System.exit(0);
 			} 
 			else if (choice == 3){
@@ -130,7 +138,11 @@ public class Mastermind {
 		}
 	}
 	
-	//checks sets to see if they are in the correct format
+	/**
+	 * checks sets to see if they are in the correct format
+	 * @param set the set to check
+	 * @return true if the set is valid, false or not
+	 */
 	public static boolean setChecker(String set) {
 		set = set.toUpperCase();
 		if (set.length() != 4) {
@@ -144,6 +156,11 @@ public class Mastermind {
 		}
 	}
 	
+	/**
+	 * Generates a Computer code for the user to attempt to guess.
+	 * Uses modified code from KnuthAlgorithm.java
+	 * @return The randomly generated computer code
+	 */
 	public static String getCompCode(){
 		Random rand = new Random();
 		String letters = new String();
